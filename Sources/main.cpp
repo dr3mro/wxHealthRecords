@@ -1,5 +1,3 @@
-// wxWidgets "Hello World" Program
-
 // For compilers that support precompilation, includes "wx/wx.h".
 #include <wx/wxprec.h>
 
@@ -32,7 +30,7 @@ bool MyApp::OnInit() {
   return true;
 }
 
-MyFrame::MyFrame() : wxFrame(NULL, wxID_ANY, "Hello World") {
+MyFrame::MyFrame() : wxFrame(NULL, wxID_ANY, "Health Records") {
   wxMenu *menuFile = new wxMenu;
   menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
                    "Help string shown in status bar for this menu item");
@@ -47,6 +45,10 @@ MyFrame::MyFrame() : wxFrame(NULL, wxID_ANY, "Hello World") {
   menuBar->Append(menuHelp, "&Help");
 
   SetMenuBar(menuBar);
+
+  wxPanel *mainPanel =
+      new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
+  mainPanel->SetBackgroundColour(wxColor(100, 100, 200));
 
   CreateStatusBar();
   SetStatusText("Welcome to wxWidgets!");
