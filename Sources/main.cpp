@@ -54,6 +54,9 @@ MyFrame::MyFrame() : wxFrame(NULL, wxID_ANY, "Hello World") {
   Bind(wxEVT_MENU, &MyFrame::OnHello, this, ID_Hello);
   Bind(wxEVT_MENU, &MyFrame::OnAbout, this, wxID_ABOUT);
   Bind(wxEVT_MENU, &MyFrame::OnExit, this, wxID_EXIT);
+
+  this->SetSize(wxSize(1920, 1080));
+  this->CenterOnScreen();
 }
 
 void MyFrame::OnExit(wxCommandEvent &event) { Close(true); }
