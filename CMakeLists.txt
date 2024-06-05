@@ -9,9 +9,12 @@ file(GLOB SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/Sources/*.cpp")
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS_RELEASE "-DNDEBUG -O2 -s")
-
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_FLAGS_RELEASE "-DNDEBUG -O2 -s")
+set(CMAKE_CXX_FLAGS_DEBUG
+    "${CMAKE_CXX_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")
+set(CMAKE_LINKER_FLAGS_DEBUG
+    "${CMAKE_LINKER_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")
 
 add_subdirectory("${Depends}")
 
@@ -20,7 +23,11 @@ if(APPLE)
   set_target_properties(${Target} PROPERTIES MACOSX_BUNDLE_INFO_PLIST
                                              ${Bundle}/Info.plist)
 else()
-  add_executable(${Target} WIN32 ${SOURCES} ${Bundle}Application.rc)
+  if(MSVC)
+    add_executable(${Target} WIN32 ${SOURCES} ${Bundle}Application.rc)
+  else()
+    add_executable(${Target} WIN32 ${SOURCES} ${Bundle}Application.manifest)
+  endif()
 endif()
 
 target_link_libraries(${Target} PRIVATE wxcore wxnet)

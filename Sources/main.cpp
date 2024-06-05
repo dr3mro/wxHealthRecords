@@ -69,6 +69,19 @@ MyFrame::MyFrame() : wxFrame(NULL, wxID_ANY, "Health Records") {
 
   wxButton *quitButton = new wxButton(mainPanel, wxID_ANY, "Quit Me!");
 
+  quitButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent &event) {
+    wxLogMessage("This will exit the application, Bye.");
+    this->Close();
+  });
+
+  int *p;
+
+  for (int i = 0; i < 100; i++) {
+    p = new int();
+  }
+
+  delete p;
+
   wxBoxSizer *centerSizer = new wxBoxSizer(wxVERTICAL);
 
   centerSizer->Add(mainPanel, 1, wxEXPAND | wxALL, FromDIP(40));
