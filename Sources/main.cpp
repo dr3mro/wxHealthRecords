@@ -46,10 +46,6 @@ MyFrame::MyFrame() : wxFrame(NULL, wxID_ANY, "Health Records") {
 
   SetMenuBar(menuBar);
 
-  // wxPanel *mainPanel =
-  //     new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-  // mainPanel->SetBackgroundColour(wxColor(100, 100, 200));
-
   wxBoxSizer *panelSizer = new wxBoxSizer(wxHORIZONTAL);
 
   wxPanel *panel1 =
@@ -63,11 +59,23 @@ MyFrame::MyFrame() : wxFrame(NULL, wxID_ANY, "Health Records") {
   panel2->SetBackgroundColour(wxColour(100, 200, 100));
   panel3->SetBackgroundColour(wxColour(200, 100, 100));
 
-  panelSizer->Add(panel1, 1, wxEXPAND);
-  panelSizer->Add(panel2, 1, wxEXPAND);
-  panelSizer->Add(panel3, 1, wxEXPAND);
+  panelSizer->Add(panel1, 1, wxEXPAND | wxALL, FromDIP(25));
+  panelSizer->Add(panel2, 1, wxEXPAND | wxTOP | wxBOTTOM, FromDIP(25));
+  panelSizer->Add(panel3, 1, wxEXPAND | wxALL, FromDIP(25));
 
+  wxPanel *mainPanel =
+      new wxPanel(panel2, wxID_ANY, wxDefaultPosition, wxDefaultSize);
+  mainPanel->SetBackgroundColour(wxColor(100, 100, 200));
+
+  wxButton *quitButton = new wxButton(mainPanel, wxID_ANY, "Quit Me!");
+
+  wxBoxSizer *centerSizer = new wxBoxSizer(wxVERTICAL);
+
+  centerSizer->Add(mainPanel, 1, wxEXPAND | wxALL, FromDIP(40));
+
+  panel2->SetSizerAndFit(centerSizer);
   this->SetSizerAndFit(panelSizer);
+
   CreateStatusBar();
   SetStatusText("Welcome to wxWidgets!");
 
