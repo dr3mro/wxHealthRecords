@@ -65,3 +65,9 @@ elseif(WIN32)
 
   target_link_libraries(${Target} PRIVATE wxcore wxnet)
 endif()
+
+# Add a custom target to strip symbols from the executable
+add_custom_target(
+  strip ALL
+  COMMAND ${CMAKE_STRIP} $<TARGET_FILE:${Target}>
+  DEPENDS $<TARGET_FILE:${Target}>)
