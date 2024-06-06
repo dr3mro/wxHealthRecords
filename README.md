@@ -38,7 +38,7 @@ Artifacts for both configurations will be generated in the `build` directory.
 On Mac or Linux you'll need to maintain two build trees:
 
 ```bash
-cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Debug
+cmake -S. -Bbuild -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Debug -G "Ninja"
 cmake --build build -j
 cmake -S. -Bbuild-rel -DCMAKE_BUILD_TYPE=Release
 cmake --build build-rel -j

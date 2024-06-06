@@ -1,11 +1,15 @@
 cmake_minimum_required(VERSION 3.28 FATAL_ERROR)
 set(Target "Health_Records")
-project(${Target} LANGUAGES CXX)
+project(${Target} LANGUAGES C CXX)
 
 set(Depends "${CMAKE_CURRENT_SOURCE_DIR}/Depends/")
 set(Bundle "${CMAKE_CURRENT_SOURCE_DIR}/Bundle/")
 
 file(GLOB SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/Sources/*.cpp")
+
+set(CMAKE_C_COMPILER "clang")
+set(CMAKE_CXX_COMPILER "clang++")
+set(CMAKE_BUILD_TYPE "Debug")
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -19,9 +23,10 @@ if(MSVC)
 else()
   set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -DNDEBUG -O2 -s")
   set(CMAKE_CXX_FLAGS_DEBUG
-      "${CMAKE_CXX_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")
+      "${CMAKE_CXX_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address -g")
   set(CMAKE_LINKER_FLAGS_DEBUG
-      "${CMAKE_LINKER_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")
+      "${CMAKE_LINKER_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address -g"
+  )
 endif()
 
 add_subdirectory("${Depends}")
@@ -53,7 +58,9 @@ elseif(WIN32)
 endif()
 
 # Add a custom target to strip symbols from the executable
-add_custom_target(
-  strip ALL
-  COMMAND ${CMAKE_STRIP} $<TARGET_FILE:${Target}>
-  DEPENDS $<TARGET_FILE:${Target}>)
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+  add_custom_target(
+    strip ALL
+    COMMAND ${CMAKE_STRIP} $<TARGET_FILE:${Target}>
+    DEPENDS $<TARGET_FILE:${Target}>)
+endif()
