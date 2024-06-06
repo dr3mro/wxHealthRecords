@@ -28,7 +28,6 @@ add_subdirectory("${Depends}")
 
 if(UNIX)
   add_executable(${Target} ${SOURCES})
-  add_executable(${Target} ${SOURCES})
   find_package(wxWidgets REQUIRED COMPONENTS net core base)
 
   if(wxWidgets_USE_FILE) # not defined in CONFIG mode
@@ -47,22 +46,9 @@ elseif(APPLE)
 
   set_target_properties(${Target} PROPERTIES MACOSX_BUNDLE_INFO_PLIST
                                              ${Bundle}/Info.plist)
-  find_package(wxWidgets REQUIRED COMPONENTS net core base)
-
-  if(wxWidgets_USE_FILE) # not defined in CONFIG mode
-    include("${wxWidgets_USE_FILE}")
-  endif()
-
-  set_target_properties(${Target} PROPERTIES MACOSX_BUNDLE_INFO_PLIST
-                                             ${Bundle}/Info.plist)
   target_link_libraries(${Target} PRIVATE core net)
 elseif(WIN32)
-  if(MSVC)
-    add_executable(${Target} WIN32 ${SOURCES} ${Bundle}Application.rc)
-  else()
-    add_executable(${Target} WIN32 ${SOURCES} ${Bundle}Application.manifest)
-  endif()
-
+  add_executable(${Target} WIN32 ${SOURCES} ${Bundle}Application.rc)
   target_link_libraries(${Target} PRIVATE wxcore wxnet)
 endif()
 
