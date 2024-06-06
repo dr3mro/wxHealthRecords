@@ -80,7 +80,6 @@ MyFrame::MyFrame() : wxFrame(NULL, wxID_ANY, "Health Records") {
     p = new int();
   }
 
-  delete p;
 
   wxBoxSizer *centerSizer = new wxBoxSizer(wxVERTICAL);
 

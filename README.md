@@ -44,6 +44,11 @@ cmake -S. -Bbuild-rel -DCMAKE_BUILD_TYPE=Release
 cmake --build build-rel -j
 ```
 
+# Check MemLeaks
+```bash
+LSAN_OPTIONS=suppressions=suppressions.txt build/Health_Records
+```
+
 ## License
 
 MIT License. Can be used in closed-source commercial products.#
