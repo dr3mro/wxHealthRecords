@@ -46,48 +46,33 @@ MyFrame::MyFrame() : wxFrame(NULL, wxID_ANY, "Health Records") {
 
   SetMenuBar(menuBar);
 
-  wxBoxSizer *panelSizer = new wxBoxSizer(wxHORIZONTAL);
-
-  wxPanel *panel1 =
-      new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200, 100));
-  wxPanel *panel2 =
-      new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200, 100));
-  wxPanel *panel3 =
-      new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200, 100));
-
-  panel1->SetBackgroundColour(wxColour(100, 100, 200));
-  panel2->SetBackgroundColour(wxColour(100, 200, 100));
-  panel3->SetBackgroundColour(wxColour(200, 100, 100));
-
-  panelSizer->Add(panel1, 1, wxEXPAND | wxALL, FromDIP(25));
-  panelSizer->Add(panel2, 1, wxEXPAND | wxTOP | wxBOTTOM, FromDIP(25));
-  panelSizer->Add(panel3, 1, wxEXPAND | wxALL, FromDIP(25));
-
   wxPanel *mainPanel =
-      new wxPanel(panel2, wxID_ANY, wxDefaultPosition, wxDefaultSize);
+      new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
   mainPanel->SetBackgroundColour(wxColor(100, 100, 200));
+  wxFont font(42, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL,
+              false, "JetBrainsMono Nerd Font");
 
-  wxButton *quitButton = new wxButton(mainPanel, wxID_ANY, "Quit Me!");
+  wxInitAllImageHandlers();
+  wxImage icon("icon.png", wxBITMAP_TYPE_PNG);
+  icon.Rescale(80, 80);
+  wxBitmap bitmap(icon);
 
+  wxButton *quitButton =
+      new wxButton(mainPanel, wxID_ANY, "Bye!", wxDefaultPosition,
+                   wxSize(FromDIP(80), FromDIP(80)), wxBU_AUTODRAW);
+
+  quitButton->SetBitmap(bitmap);
   quitButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent &event) {
     wxLogMessage("This will exit the application, Bye.");
     this->Close();
   });
 
-  int *p;
-
-  for (int i = 0; i < 100; i++) {
-    p = new int();
-  }
-
-
   wxBoxSizer *centerSizer = new wxBoxSizer(wxVERTICAL);
+  centerSizer->AddStretchSpacer();
+  centerSizer->Add(quitButton, wxSizerFlags().CenterHorizontal());
+  centerSizer->AddStretchSpacer();
 
-  centerSizer->Add(mainPanel, 1, wxEXPAND | wxALL, FromDIP(40));
-
-  panel2->SetSizerAndFit(centerSizer);
-  this->SetSizerAndFit(panelSizer);
-
+  mainPanel->SetSizerAndFit(centerSizer);
   CreateStatusBar();
   SetStatusText("Welcome to wxWidgets!");
 
