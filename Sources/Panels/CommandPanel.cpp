@@ -1,20 +1,8 @@
 #pragma once
 
 #include "../Controls/ActionButton.cpp"
-#include "../Resources/font_awesome_6.h"
-
-#include <wx/font.h>
-#include <wx/mstream.h>
 #include <wx/sizer.h>
 #include <wx/wx.h>
-
-wxFont
-LoadFontFromMemory ()
-{
-  wxFont font (22, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-               wxFONTWEIGHT_NORMAL, false, "Font Awesome 6 Free Solid");
-  return font;
-}
 
 // Define the Font Awesome unicode characters for icons
 const wxString icons[] = {
@@ -44,7 +32,9 @@ public:
       : wxPanel (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize)
   {
     // Set the embeded font for icon
-    wxFont iconFont = LoadFontFromMemory ();
+    wxFont iconFont
+        = wxFont (22, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                  wxFONTWEIGHT_NORMAL, false, "Font Awesome 6 Free Solid");
     // Set the default system font for text
     wxFont textFont = wxSystemSettings::GetFont (wxSYS_DEFAULT_GUI_FONT);
 
