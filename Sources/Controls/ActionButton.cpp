@@ -11,8 +11,10 @@ class ActionButton : public wxPanel
 {
 public:
   ActionButton (wxWindow *parent, wxWindowID id = wxID_ANY,
-                const wxString &icon = "", const wxString &text = "")
-      : wxPanel (parent, id, wxDefaultPosition, wxSize (96, 96))
+                const wxString &icon = "", const wxString &text = "",
+                const wxPoint &pos = wxDefaultPosition,
+                const wxSize &size = wxDefaultSize)
+      : wxPanel (parent, id, pos, size)
   {
 
     // Create a vertical box sizer to stack the icon and text
@@ -138,7 +140,7 @@ private:
         penColor = wxColour (100, 255, 100);
         brushColor = wxColour (100, 150, 100, 64);
       }
-    wxPen pen (penColor, 3);
+    wxPen pen (penColor, FromDIP (2));
 
     labelText->SetBackgroundColour (brushColor);
     iconText->SetBackgroundColour (brushColor);

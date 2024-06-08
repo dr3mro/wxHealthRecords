@@ -39,7 +39,7 @@ public:
     const int numButtons = sizeof (icons) / sizeof (icons[0]);
 
     // Set the embeded font for icon
-    wxFont iconFont = LoadFontAwesome ();
+    wxFont *iconFont = LoadFontAwesome ();
 
     // Set the default system font for text
     wxFont textFont = wxSystemSettings::GetFont (wxSYS_DEFAULT_GUI_FONT);
@@ -51,8 +51,9 @@ public:
     for (int i = 0; i < numButtons; ++i)
       {
         ActionButton *button
-            = new ActionButton (this, wxID_ANY, icons[i], labels[i]);
-        button->SetIconFont (iconFont);
+            = new ActionButton (this, wxID_ANY, icons[i], labels[i],
+                                wxDefaultPosition, FromDIP (wxSize (64, 64)));
+        button->SetIconFont (*iconFont);
         button->SetTextFont (textFont);
         sizer->Add (button, 0, wxALIGN_CENTER | wxTOP | wxLEFT | wxRIGHT, 5);
       }
@@ -63,28 +64,36 @@ public:
   }
 
 private:
-  wxFont
+  wxFont *
   LoadFontAwesome ()
   {
-    // Register the memory file system handler
-    wxMemoryFSHandler::AddFile ("memory:FontAwesome.otf", FontAwesome_otf,
-                                FontAwesome_otf_len);
 
+    wxFileSystem::AddHandler (new wxMemoryFSHandler);
+    wxString fontMemmoryFileName = "memory:FontAwesome.otf";
+    // Register the memory file system handler
+    //    wxMemoryFSHandler::AddFile(fontName, FontAwesome_otf,
+    //                                FontAwesome_otf_len);
+    wxMemoryFSHandler::AddFileWithMimeType (
+        fontMemmoryFileName, FontAwesome_otf, FontAwesome_otf_len,
+        "application/octet-stream");
     // Load the font from memory
-    wxFont font (14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-                 wxFONTWEIGHT_NORMAL, false, "Font Awesome 6 Free Solid");
-    if (font.IsOk ())
+    wxFont *font
+        = new wxFont (14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                      wxFONTWEIGHT_NORMAL, false, "Font Awesome 6 Free Solid");
+    if (font->IsOk ())
       {
         // Clean up: remove the font from memory file system
-        wxMemoryFSHandler::RemoveFile ("memory:FontAwesome.otf");
+        // wxMemoryFSHandler::RemoveFile (fontMemmoryFileName);
+        wxLogMessage (font->GetFaceName ());
         return font;
       }
     else
       {
         // Clean up: remove the font from memory file system
-        wxMemoryFSHandler::RemoveFile ("memory:FontAwesome.otf");
+        // wxMemoryFSHandler::RemoveFile (fontMemmoryFileName);
         wxLogError ("Failed to load embedded font!");
+        wxLogMessage ("Failed");
       }
-    return wxFont ();
+    return font;
   }
 };
