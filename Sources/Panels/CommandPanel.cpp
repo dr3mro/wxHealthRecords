@@ -4,37 +4,43 @@
 #include <wx/sizer.h>
 #include <wx/wx.h>
 
-// Define the Font Awesome unicode characters for icons
-const wxString icons[] = {
-  wxT ("\uf055"), // Add icon
-  wxT ("\uf002"), // Search icon
-  wxT ("\uf487"), // Patient icon
-  wxT ("\uf570"), // Reports icon
-  wxT ("\uf46b"), // Medicine icon
-  wxT ("\uf073"), // Agenda icon
-  wxT ("\uf81d"), // Income icon
-  wxT ("\uf013")  // Settings icon
-};
+#include <wx/font.h>
+#include <wx/fs_mem.h>
+#include <wx/mstream.h>
+#include <wx/stdpaths.h>
 
-// Define the corresponding text labels
-const wxString labels[]
-    = { wxT ("Add"),   wxT ("Search"), wxT ("Patient"), wxT ("Reports"),
-        wxT ("Drugs"), wxT ("Agenda"), wxT ("Income"),  wxT ("Settings") };
+#include "fontawesome.h"
 
-// Number of buttons
-const int numButtons = sizeof (icons) / sizeof (icons[0]);
-
-// A panel containing multiple CustomButtons in a vertical sizer
 class ButtonPanel : public wxPanel
 {
+
 public:
   ButtonPanel (wxWindow *parent)
       : wxPanel (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize)
   {
+    // Define the Font Awesome unicode characters for icons
+    const wxString icons[] = {
+      wxT ("\uf055"), // Add icon
+      wxT ("\uf002"), // Search icon
+      wxT ("\uf487"), // Patient icon
+      wxT ("\uf570"), // Reports icon
+      wxT ("\uf46b"), // Medicine icon
+      wxT ("\uf073"), // Agenda icon
+      wxT ("\uf81d"), // Income icon
+      wxT ("\uf013")  // Settings icon
+    };
+
+    // Define the corresponding text labels
+    const wxString labels[]
+        = { wxT ("Add"),   wxT ("Search"), wxT ("Patient"), wxT ("Reports"),
+            wxT ("Drugs"), wxT ("Agenda"), wxT ("Income"),  wxT ("Settings") };
+
+    // Number of buttons
+    const int numButtons = sizeof (icons) / sizeof (icons[0]);
+
     // Set the embeded font for icon
-    wxFont iconFont
-        = wxFont (22, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-                  wxFONTWEIGHT_NORMAL, false, "Font Awesome 6 Free Solid");
+    wxFont iconFont = LoadFontAwesome ();
+
     // Set the default system font for text
     wxFont textFont = wxSystemSettings::GetFont (wxSYS_DEFAULT_GUI_FONT);
 
@@ -54,5 +60,31 @@ public:
     SetBackgroundColour (wxColour (75, 125, 75, 64));
     SetSizer (sizer);
     Layout ();
+  }
+
+private:
+  wxFont
+  LoadFontAwesome ()
+  {
+    // Register the memory file system handler
+    wxMemoryFSHandler::AddFile ("memory:FontAwesome.otf", FontAwesome_otf,
+                                FontAwesome_otf_len);
+
+    // Load the font from memory
+    wxFont font (14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                 wxFONTWEIGHT_NORMAL, false, "Font Awesome 6 Free Solid");
+    if (font.IsOk ())
+      {
+        // Clean up: remove the font from memory file system
+        wxMemoryFSHandler::RemoveFile ("memory:FontAwesome.otf");
+        return font;
+      }
+    else
+      {
+        // Clean up: remove the font from memory file system
+        wxMemoryFSHandler::RemoveFile ("memory:FontAwesome.otf");
+        wxLogError ("Failed to load embedded font!");
+      }
+    return wxFont ();
   }
 };
