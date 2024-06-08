@@ -5,6 +5,8 @@
 #include <wx/wx.h>
 #endif
 
+#include "Panels/CommandPanel.cpp"
+
 class MyApp : public wxApp {
 public:
   virtual bool OnInit();
@@ -48,31 +50,14 @@ MyFrame::MyFrame() : wxFrame(NULL, wxID_ANY, "Health Records") {
 
   wxPanel *mainPanel =
       new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-  mainPanel->SetBackgroundColour(wxColor(100, 100, 200));
-  wxFont font(42, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL,
-              false, "JetBrainsMono Nerd Font");
+  mainPanel->SetBackgroundColour(wxColour(100, 100, 200));
 
-  wxInitAllImageHandlers();
-  wxImage icon("icon.png", wxBITMAP_TYPE_PNG);
-  icon.Rescale(80, 80);
-  wxBitmap bitmap(icon);
+  ButtonPanel *buttonPanel = new ButtonPanel(this);
 
-  wxButton *quitButton =
-      new wxButton(mainPanel, wxID_ANY, "Bye!", wxDefaultPosition,
-                   wxSize(FromDIP(80), FromDIP(80)), wxBU_AUTODRAW);
+  wxBoxSizer *mainSizer = new wxBoxSizer(wxHORIZONTAL);
+  mainSizer->Add(buttonPanel, 0, wxEXPAND | wxALL, 5);
+  mainSizer->Add(mainPanel, 1, wxEXPAND | wxRIGHT | wxTOP | wxBOTTOM, 5);
 
-  quitButton->SetBitmap(bitmap);
-  quitButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent &event) {
-    wxLogMessage("This will exit the application, Bye.");
-    this->Close();
-  });
-
-  wxBoxSizer *centerSizer = new wxBoxSizer(wxVERTICAL);
-  centerSizer->AddStretchSpacer();
-  centerSizer->Add(quitButton, wxSizerFlags().CenterHorizontal());
-  centerSizer->AddStretchSpacer();
-
-  mainPanel->SetSizerAndFit(centerSizer);
   CreateStatusBar();
   SetStatusText("Welcome to wxWidgets!");
 
@@ -80,17 +65,18 @@ MyFrame::MyFrame() : wxFrame(NULL, wxID_ANY, "Health Records") {
   Bind(wxEVT_MENU, &MyFrame::OnAbout, this, wxID_ABOUT);
   Bind(wxEVT_MENU, &MyFrame::OnExit, this, wxID_EXIT);
 
+  this->SetSizerAndFit(mainSizer);
   this->SetSize(wxSize(1920, 1080));
   this->CenterOnScreen();
 }
 
-void MyFrame::OnExit(wxCommandEvent &event) { Close(true); }
+void MyFrame::OnExit(wxCommandEvent &) { Close(true); }
 
-void MyFrame::OnAbout(wxCommandEvent &event) {
+void MyFrame::OnAbout(wxCommandEvent &) {
   wxMessageBox("This is a wxWidgets Hello World example", "About Hello World",
                wxOK | wxICON_INFORMATION);
 }
 
-void MyFrame::OnHello(wxCommandEvent &event) {
+void MyFrame::OnHello(wxCommandEvent &) {
   wxLogMessage("Hello world from wxWidgets!");
 }
