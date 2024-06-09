@@ -6,27 +6,17 @@
 #include <wx/stdpaths.h>
 
 #define FONT_FACE_NAME "Font Awesome 6 Pro Regular"
+#define TTF_FILE_NAME "fa_regular_400.ttf"
+#define TTF_ARRAY arr_fa_regular_400_ttf
 
 FontHandler::FontHandler ()
 {
   wxStandardPaths &stdPaths = wxStandardPaths::Get ();
-#if defined(_WIN32)
-  wxFileName fontFileName (stdPaths.GetTempDir (), "fa_regular_400.ttf");
-#else
-  wxFileName fontFileName (stdPaths.GetUserConfigDir (), "fa_regular_400.ttf");
-#endif
-
+  wxFileName fontFileName (stdPaths.GetTempDir (), TTF_FILE_NAME);
   fontFilePath = fontFileName.GetFullPath ();
 }
 
-FontHandler::~FontHandler ()
-{
-  // Optionally delete the temporary font file
-  // if (wxFileExists (fontFilePath))
-  //   {
-  //     wxRemoveFile (fontFilePath);
-  //   }
-}
+FontHandler::~FontHandler () {}
 
 bool
 FontHandler::DumpFontToTempFile ()
@@ -34,10 +24,9 @@ FontHandler::DumpFontToTempFile ()
   wxFile file;
   if (!file.Open (fontFilePath, wxFile::write))
     {
-      wxLogMessage ("Failed to dump awesome font!");
       return false;
     }
-  file.Write (arr_fa_regular_400_ttf, sizeof (arr_fa_regular_400_ttf));
+  file.Write (TTF_ARRAY, sizeof (TTF_ARRAY));
   file.Close ();
   return true;
 }
@@ -47,7 +36,6 @@ FontHandler::LoadFont ()
 {
   if (!DumpFontToTempFile ())
     {
-      wxLogError ("Could not dump font to %s.", fontFilePath);
       return wxNullFont;
     }
   wxFont font;
@@ -61,6 +49,5 @@ FontHandler::LoadFont ()
           return font;
         }
     }
-  wxLogError ("Could not load font from %s.", fontFilePath);
   return wxNullFont;
 }
