@@ -42,12 +42,12 @@ FontHandler::DumpFontToTempFile ()
   if (!file.Open (homeDir, wxFile::write))
     {
       return false;
-      std::cout << "Failed to dump awesome font!" << std::endl;
+      wxLogMessage ("Failed to dump awesome font!");
     }
   else
     {
       file.Close ();
-      std::cout << "Done dumping awesome font!" << std::endl;
+      wxLogMessage ("Done dumping awesome font!");
       return true;
     }
 #elif defined(__Apple__)
