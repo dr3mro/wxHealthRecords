@@ -5,14 +5,14 @@
 #include <wx/font.h>
 #include <wx/stdpaths.h>
 
+#define FONT_FACE_NAME "Font Awesome 6 Pro Regular"
+
 FontHandler::FontHandler ()
 {
   wxStandardPaths &stdPaths = wxStandardPaths::Get ();
 #if defined(_WIN32)
-#define FONT_FACE_NAME "Font Awesome 6 Pro Regular"
   wxFileName fontFileName (stdPaths.GetTempDir (), "fa_regular_400.ttf");
 #else
-#define FONT_FACE_NAME "Font Awesome 6 Pro Regular"
   wxFileName fontFileName (stdPaths.GetUserConfigDir (), "fa_regular_400.ttf");
 #endif
 
