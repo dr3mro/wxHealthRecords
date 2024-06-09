@@ -1,12 +1,10 @@
-#include "../Controls/ActionButton.cpp"
-#include "../FontAwesome/FontAwesomeHandler.h"
-#include <wx/sizer.h>
-#include <wx/wx.h>
+#include "Controls/ActionButton.cpp"
+#include "FontAwesome/FontAwesomeHandler.h"
 
-class ButtonPanel : public wxPanel {
+class CommandPanel : public wxPanel {
 
 public:
-    ButtonPanel(wxWindow* parent)
+    CommandPanel(wxWindow* parent)
         : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize)
     {
         FontAwesomeHandler fontAwesomeHandler;
