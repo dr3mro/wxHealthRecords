@@ -8,7 +8,7 @@
 FontHandler::FontHandler ()
 {
   wxStandardPaths &stdPaths = wxStandardPaths::Get ();
-#if defined(__WIN32__) | defined(_WIN32) | defined(_WIN64)
+#if defined(_WIN32)
   wxFileName fontFileName (stdPaths.GetTempDir (), "fa_solid_900.ttf");
 #elif defined(__Linux__)
   wxFileName fontFileName (stdPaths.GetUserConfigDir (), "fa_solid_900.ttf");
@@ -35,7 +35,7 @@ FontHandler::DumpFontToTempFile ()
       wxLogMessage ("Failed to dump awesome font!");
       return false;
     }
-  file.Write (arr_fa_solid_900_ttf, sizeof (arr_fa_solid_900_ttf));
+  file.Write (arr_fa_regular_400_ttf, sizeof (arr_fa_regular_400_ttf));
   file.Close ();
   return true;
 }
@@ -45,6 +45,7 @@ FontHandler::LoadFont ()
 {
   if (!DumpFontToTempFile ())
     {
+      wxLogError ("Could not dump font to %s.", fontFilePath);
       return wxNullFont;
     }
   wxFont font;
@@ -52,7 +53,7 @@ FontHandler::LoadFont ()
     {
       font = wxFont (14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
                      wxFONTWEIGHT_NORMAL, false,
-                     wxT ("Font Awesome 6 Free Solid"));
+                     wxT ("Font Awesome 6 Pro Regular"));
 
       if (font.IsOk ())
         {
