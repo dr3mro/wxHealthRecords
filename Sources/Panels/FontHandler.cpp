@@ -50,7 +50,7 @@ FontHandler::DumpFontToTempFile ()
       wxLogMessage ("Done dumping awesome font!");
       return true;
     }
-#elif defined(__Apple__)
+    //#elif defined(__Apple__)
 
 #endif
 
