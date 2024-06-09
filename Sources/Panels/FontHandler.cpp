@@ -62,6 +62,7 @@ FontHandler::LoadFont ()
   std::cout << "Could not load font from" << tempFilePath << std::endl;
   if (font.IsOk ())
     {
+      std::cout << "Font is OK" << std::endl;
       return font;
     }
   return wxNullFont;
