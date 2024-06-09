@@ -22,15 +22,6 @@ FontAwesomeHandler::FontAwesomeHandler()
     fontFilePath = fontFileName.GetFullPath();
 }
 
-bool FontAwesomeHandler::DumpFontToTempFile()
-{
-    wxFile file;
-    if (!file.Open(fontFilePath, wxFile::write)) {
-        return false;
-    }
-    return (file.Write(TTF_ARRAY, sizeof(TTF_ARRAY)) == sizeof(TTF_ARRAY) && file.Close());
-}
-
 wxFont FontAwesomeHandler::LoadFontAwesome()
 {
     if (!DumpFontToTempFile()) {
@@ -41,4 +32,13 @@ wxFont FontAwesomeHandler::LoadFontAwesome()
         font = wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT(FONT_FACE_NAME));
     }
     return font.IsOk() ? font : wxNullFont;
+}
+
+bool FontAwesomeHandler::DumpFontToTempFile()
+{
+    wxFile file;
+    if (!file.Open(fontFilePath, wxFile::write)) {
+        return false;
+    }
+    return (file.Write(TTF_ARRAY, sizeof(TTF_ARRAY)) == sizeof(TTF_ARRAY) && file.Close());
 }

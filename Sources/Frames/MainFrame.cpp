@@ -42,10 +42,6 @@ MainFrame::MainFrame()
     this->CenterOnScreen();
 }
 
-MainFrame::~MainFrame()
-{
-}
-
 void MainFrame::OnExit(wxCommandEvent&)
 {
     Close(true);

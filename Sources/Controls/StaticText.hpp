@@ -8,9 +8,11 @@ public:
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize, long style = 0,
         const wxString& name = wxStaticTextNameStr);
+    ~StaticText() = default;
 
 private:
-    void DoParentMouseEvent(wxMouseEvent& event);
+    void
+    DoParentMouseEvent(wxMouseEvent& event);
     void OnMouseEnter(wxMouseEvent& event);
     void OnMouseLeave(wxMouseEvent& event);
     void OnLeftDown(wxMouseEvent& event);

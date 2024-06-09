@@ -13,6 +13,7 @@ public:
         const wxString& icon = "", const wxString& text = "",
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize);
+    ~ActionButton() = default;
 
     void SetIconFont(const wxFont& font);
     void SetTextFont(const wxFont& font);
