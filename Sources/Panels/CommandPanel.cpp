@@ -11,7 +11,7 @@ public:
     {
         FontAwesomeHandler fontAwesomeHandler;
         // Set the embeded font for icon
-        wxFont iconFont = fontAwesomeHandler.LoadFont();
+        wxFont iconFont = fontAwesomeHandler.LoadFontAwesome();
 
         // Set the default system font for text
         wxFont textFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);

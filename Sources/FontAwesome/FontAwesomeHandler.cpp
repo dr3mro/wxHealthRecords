@@ -2,7 +2,6 @@
 #include "Fontawesome.hpp"
 #include "wx/filename.h"
 #include <wx/file.h>
-#include <wx/font.h>
 #include <wx/stdpaths.h>
 
 #define FONT_FACE_NAME "Font Awesome 6 Pro Regular"
@@ -29,7 +28,7 @@ bool FontAwesomeHandler::DumpFontToTempFile()
     return (file.Write(TTF_ARRAY, sizeof(TTF_ARRAY)) == sizeof(TTF_ARRAY) && file.Close());
 }
 
-wxFont FontAwesomeHandler::LoadFont()
+wxFont FontAwesomeHandler::LoadFontAwesome()
 {
     if (!DumpFontToTempFile()) {
         return wxNullFont;
