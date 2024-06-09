@@ -26,7 +26,6 @@ bool
 FontHandler::DumpFontToTempFile ()
 {
   wxFile file;
-
 #if defined(__WIN32__) | defined(_WIN32) | defined(_WIN64)
   if (!file.Open (tempFilePath, wxFile::write))
     {
@@ -39,14 +38,16 @@ FontHandler::DumpFontToTempFile ()
     }
 #elif defined(__Linux__)
   wxStandardPaths &stdPaths = wxStandardPaths::Get ();
-  wxString homeDir = stdPaths.GetExecutablePath ();
+  wxString homeDir = stdPaths.GetUserConfigDir ();
   if (!file.Open (homeDir, wxFile::write))
     {
       return false;
+      std::cout << "Failed to dump awesome font!" << std::endl;
     }
   else
     {
       file.Close ();
+      std::cout << "Done dumping awesome font!" << std::endl;
       return true;
     }
 #elif defined(__Apple__)
