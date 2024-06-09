@@ -8,10 +8,10 @@ public:
     FontAwesomeHandler();
     ~FontAwesomeHandler();
 
-    bool DumpFontToTempFile();
     wxFont LoadFont();
 
 private:
     wxString fontFilePath;
+    bool DumpFontToTempFile();
 };
 #endif // FONTAWESOMEHANDLER_H

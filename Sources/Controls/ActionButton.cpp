@@ -1,7 +1,8 @@
+#include "StaticText.cpp"
+
 #include <wx/sizer.h>
 #include <wx/wx.h>
 
-#include "StaticText.cpp"
 class ActionButton : public wxPanel {
 public:
     ActionButton(wxWindow* parent, wxWindowID id = wxID_ANY,
