@@ -54,10 +54,10 @@ FontHandler::LoadFont ()
   else
     {
       wxLogError ("Could not load font from %s.", tempFilePath);
-      std::cout << " Could not load font from << tempFilePath" << std::endl;
+      std::cout << "Could not load font from" << tempFilePath << std::endl;
     }
 
-  std::cout << " Could not load font from << tempFilePath" << std::endl;
+  std::cout << "Could not load font from" << tempFilePath << std::endl;
   if (font.IsOk ())
     {
       return font;
