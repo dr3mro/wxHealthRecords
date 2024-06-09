@@ -30,7 +30,9 @@ FontHandler::DumpFontToTempFile ()
     {
       return false;
     }
-  file.Write (arr_fa_solid_900_ttf, sizeof (arr_fa_solid_900_ttf));
+  std::cout << "bytes writtten: "
+            << file.Write (arr_fa_solid_900_ttf,
+                           sizeof (arr_fa_solid_900_ttf));
 
   file.Close ();
   return true;
