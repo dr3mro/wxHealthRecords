@@ -44,13 +44,10 @@ FontHandler::LoadFont ()
       return wxNullFont;
     }
 
-  wxFont font;
   wxFont::AddPrivateFont (tempFilePath);
-  wxFontInfo info (14);
-  info.FaceName ("Font Awesome 6 Free Solid");
-
-  font = wxFont (info);
-
+  wxFont font
+      = wxFont (14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                wxFONTWEIGHT_NORMAL, false, wxT ("Font Awesome 6 Free Solid"));
   if (font.IsOk ())
     {
       return font;
