@@ -1,15 +1,11 @@
 #pragma once
 
 #include "../Controls/ActionButton.cpp"
+
 #include <wx/sizer.h>
 #include <wx/wx.h>
 
-#include <wx/font.h>
-#include <wx/fs_mem.h>
-#include <wx/mstream.h>
-#include <wx/stdpaths.h>
-
-#include "fontawesome.h"
+#include "FontHandler.h"
 
 class ButtonPanel : public wxPanel
 {
@@ -18,6 +14,13 @@ public:
   ButtonPanel (wxWindow *parent)
       : wxPanel (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize)
   {
+    FontHandler fontHandler;
+    // Set the embeded font for icon
+    wxFont iconFont = fontHandler.LoadFont ();
+
+    // Set the default system font for text
+    wxFont textFont = wxSystemSettings::GetFont (wxSYS_DEFAULT_GUI_FONT);
+
     // Define the Font Awesome unicode characters for icons
     const wxString icons[] = {
       wxT ("\uf055"), // Add icon
@@ -38,12 +41,6 @@ public:
     // Number of buttons
     const int numButtons = sizeof (icons) / sizeof (icons[0]);
 
-    // Set the embeded font for icon
-    wxFont *iconFont = LoadFontAwesome ();
-
-    // Set the default system font for text
-    wxFont textFont = wxSystemSettings::GetFont (wxSYS_DEFAULT_GUI_FONT);
-
     // Create a vertical box sizer
     wxBoxSizer *sizer = new wxBoxSizer (wxVERTICAL);
 
@@ -53,7 +50,7 @@ public:
         ActionButton *button
             = new ActionButton (this, wxID_ANY, icons[i], labels[i],
                                 wxDefaultPosition, FromDIP (wxSize (64, 64)));
-        button->SetIconFont (*iconFont);
+        button->SetIconFont (iconFont);
         button->SetTextFont (textFont);
         sizer->Add (button, 0, wxALIGN_CENTER | wxTOP | wxLEFT | wxRIGHT, 5);
       }
@@ -61,39 +58,5 @@ public:
     SetBackgroundColour (wxColour (75, 125, 75, 64));
     SetSizer (sizer);
     Layout ();
-  }
-
-private:
-  wxFont *
-  LoadFontAwesome ()
-  {
-
-    wxFileSystem::AddHandler (new wxMemoryFSHandler);
-    wxString fontMemmoryFileName = "memory:FontAwesome.otf";
-    // Register the memory file system handler
-    //    wxMemoryFSHandler::AddFile(fontName, FontAwesome_otf,
-    //                                FontAwesome_otf_len);
-    wxMemoryFSHandler::AddFileWithMimeType (
-        fontMemmoryFileName, FontAwesome_otf, FontAwesome_otf_len,
-        "application/octet-stream");
-    // Load the font from memory
-    wxFont *font
-        = new wxFont (14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-                      wxFONTWEIGHT_NORMAL, false, "Font Awesome 6 Free Solid");
-    if (font->IsOk ())
-      {
-        // Clean up: remove the font from memory file system
-        // wxMemoryFSHandler::RemoveFile (fontMemmoryFileName);
-        wxLogMessage (font->GetFaceName ());
-        return font;
-      }
-    else
-      {
-        // Clean up: remove the font from memory file system
-        // wxMemoryFSHandler::RemoveFile (fontMemmoryFileName);
-        wxLogError ("Failed to load embedded font!");
-        wxLogMessage ("Failed");
-      }
-    return font;
   }
 };

@@ -1,11 +1,9 @@
 #pragma once
 
-#include <wx/log.h>
-#include <wx/sizer.h>
-#include <wx/wx.h>
-
 #include "StaticText.cpp"
 #include <wx/graphics.h>
+#include <wx/sizer.h>
+#include <wx/wx.h>
 
 class ActionButton : public wxPanel
 {
