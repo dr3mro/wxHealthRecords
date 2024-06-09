@@ -1,6 +1,3 @@
-#include "FontAwesomeHandler.h "
-#include "Fontawesome.hpp"
-
 // For compilers that support precompilation, includes "wx/wx.h".
 #include <wx/wxprec.h>
 
@@ -9,8 +6,10 @@
 #include <wx/file.h>
 #include <wx/stdpaths.h>
 #include <wx/wx.h>
-
 #endif
+
+#include "FontAwesomeHandler.hpp"
+#include "Fontawesome.hpp"
 
 #define FONT_FACE_NAME "Font Awesome 6 Pro Regular"
 #define TTF_FILE_NAME "fa_regular_400.ttf"

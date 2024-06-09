@@ -1,6 +1,6 @@
 
 #include "Frames/MainFrame.hpp"
-#include "Panels/CommandPanel.cpp"
+#include "Panels/CommandPanel.hpp"
 
 MainFrame::MainFrame()
     : wxFrame(NULL, wxID_ANY, "Health Records")

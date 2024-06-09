@@ -1,5 +1,5 @@
 #pragma once
-#include "Controls/StaticText.cpp"
+#include "Controls/StaticText.hpp"
 
 #include <wx/wxprec.h>
 
