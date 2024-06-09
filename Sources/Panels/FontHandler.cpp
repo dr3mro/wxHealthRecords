@@ -1,5 +1,5 @@
 #include "FontHandler.h"
-#include "fontawesome.hpp"
+#include "Fontawesome.hpp"
 #include "wx/filename.h"
 #include <wx/file.h>
 #include <wx/font.h>
