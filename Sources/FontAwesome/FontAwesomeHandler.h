@@ -1,5 +1,5 @@
-#ifndef FONTAWESOMEHANDLER_H
-#define FONTAWESOMEHANDLER_H
+#pragma once
+
 #include <wx/font.h>
 
 class FontAwesomeHandler {
@@ -13,4 +13,3 @@ private:
     wxString fontFilePath;
     bool DumpFontToTempFile();
 };
-#endif // FONTAWESOMEHANDLER_H

@@ -1,4 +1,4 @@
-#include "Controls/ActionButton.cpp"
+#include "Controls/ActionButton.hpp"
 #include "FontAwesome/FontAwesomeHandler.h"
 
 class CommandPanel : public wxPanel {

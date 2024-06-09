@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cstdint>
 
 // length in bytes: 982412
