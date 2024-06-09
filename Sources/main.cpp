@@ -64,7 +64,7 @@ MyFrame::MyFrame()
     mainSizer->Add(mainPanel, 1, wxEXPAND | wxRIGHT | wxTOP | wxBOTTOM, 5);
 
     CreateStatusBar();
-    SetStatusText("Welcome to wxWidgets!");
+    SetStatusText("Welcome to Health Records.");
 
     Bind(wxEVT_MENU, &MyFrame::OnHello, this, ID_Hello);
     Bind(wxEVT_MENU, &MyFrame::OnAbout, this, wxID_ABOUT);
@@ -82,11 +82,11 @@ void MyFrame::OnExit(wxCommandEvent&)
 
 void MyFrame::OnAbout(wxCommandEvent&)
 {
-    wxMessageBox("This is a wxWidgets Hello World example", "About Hello World",
+    wxMessageBox("This is a Health Records prototype.", "About Health Records",
         wxOK | wxICON_INFORMATION);
 }
 
 void MyFrame::OnHello(wxCommandEvent&)
 {
-    wxLogMessage("Hello world from wxWidgets!");
+    wxLogMessage("Hello world from Health Records!");
 }
