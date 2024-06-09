@@ -26,16 +26,34 @@ bool
 FontHandler::DumpFontToTempFile ()
 {
   wxFile file;
+
+#if defined(__WIN32__) | defined(_WIN32) | defined(_WIN64)
   if (!file.Open (tempFilePath, wxFile::write))
     {
       return false;
     }
-  std::cout << "bytes writtten: "
-            << file.Write (arr_fa_solid_900_ttf,
-                           sizeof (arr_fa_solid_900_ttf));
+  else
+    {
+      file.Close ();
+      return true;
+    }
+#elif defined(__Linux__)
+  wxStandardPaths &stdPaths = wxStandardPaths::Get ();
+  wxString homeDir = stdPaths.GetUserConfigDir ();
+  if (!file.Open (homeDir, wxFile::write))
+    {
+      return false;
+    }
+  else
+    {
+      file.Close ();
+      return true;
+    }
+#elif defined(__Apple__)
 
-  file.Close ();
-  return true;
+#endif
+
+  return false;
 }
 
 wxFont
