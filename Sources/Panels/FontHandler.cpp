@@ -36,7 +36,7 @@ FontHandler::DumpFontToTempFile ()
       file.Close ();
       return true;
     }
-#elif __Linux__
+#else
   wxStandardPaths &stdPaths = wxStandardPaths::Get ();
   wxString homeDir = stdPaths.GetUserConfigDir ();
   if (!file.Open (homeDir, wxFile::write))
