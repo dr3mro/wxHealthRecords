@@ -1,7 +1,11 @@
 #include "Controls/ActionButton.hpp"
 
+#include <wx/wxprec.h>
+
+#ifndef WX_PRECOMP
 #include <wx/sizer.h>
 #include <wx/wx.h>
+#endif
 
 ActionButton::ActionButton(wxWindow* parent, wxWindowID id,
     const wxString& icon, const wxString& text,

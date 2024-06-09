@@ -1,6 +1,11 @@
 #pragma once
 #include "Controls/StaticText.cpp"
+
+#include <wx/wxprec.h>
+
+#ifndef WX_PRECOMP
 #include <wx/wx.h>
+#endif
 
 class ActionButton : public wxPanel {
 public:
