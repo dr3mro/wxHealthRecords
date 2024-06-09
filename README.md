@@ -48,7 +48,3 @@ cmake --build build-rel -j
 ```bash
 LSAN_OPTIONS=suppressions=suppressions.txt build/Health_Records
 ```
-
-## License
-
-MIT License. Can be used in closed-source commercial products.#
