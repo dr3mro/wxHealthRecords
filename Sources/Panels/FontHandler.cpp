@@ -43,6 +43,7 @@ FontHandler::LoadFont ()
     {
       return wxNullFont;
     }
+<<<<<<< HEAD
   wxFont font;
   // Check if the font file can be loaded
   if (wxFileExists (tempFilePath) && wxFont::AddPrivateFont (tempFilePath))
@@ -56,6 +57,13 @@ FontHandler::LoadFont ()
       wxLogError ("Could not load font from %s.", tempFilePath);
     }
 
+=======
+
+  wxFont::AddPrivateFont (tempFilePath);
+  wxFont font
+      = wxFont (14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                wxFONTWEIGHT_NORMAL, false, wxT ("Font Awesome 6 Free Solid"));
+>>>>>>> 6c1ef3966354dd408b2c1e942ecc5ac487db6792
   if (font.IsOk ())
     {
       return font;
