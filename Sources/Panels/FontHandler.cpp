@@ -9,9 +9,11 @@ FontHandler::FontHandler ()
 {
   wxStandardPaths &stdPaths = wxStandardPaths::Get ();
 #if defined(_WIN32)
-  wxFileName fontFileName (stdPaths.GetTempDir (), "fa_solid_900.ttf");
+#define FONT_FACE_NAME "Font Awesome 6 Pro Regular"
+  wxFileName fontFileName (stdPaths.GetTempDir (), "fa_regular_400.ttf");
 #else
-  wxFileName fontFileName (stdPaths.GetUserConfigDir (), "fa_solid_900.ttf");
+#define FONT_FACE_NAME "Font Awesome 6 Pro"
+  wxFileName fontFileName (stdPaths.GetUserConfigDir (), "fa_regular_400.ttf");
 #endif
 
   fontFilePath = fontFileName.GetFullPath ();
@@ -52,8 +54,7 @@ FontHandler::LoadFont ()
   if (wxFileExists (fontFilePath) && wxFont::AddPrivateFont (fontFilePath))
     {
       font = wxFont (14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-                     wxFONTWEIGHT_NORMAL, false,
-                     wxT ("Font Awesome 6 Pro Regular"));
+                     wxFONTWEIGHT_NORMAL, false, wxT (FONT_FACE_NAME));
 
       if (font.IsOk ())
         {
