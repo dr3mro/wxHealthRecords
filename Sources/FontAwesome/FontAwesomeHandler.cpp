@@ -1,4 +1,4 @@
-#include "FontHandler.h"
+#include "FontAwesomeHandler.h "
 #include "Fontawesome.hpp"
 #include "wx/filename.h"
 #include <wx/file.h>
@@ -9,18 +9,18 @@
 #define TTF_FILE_NAME "fa_regular_400.ttf"
 #define TTF_ARRAY arr_fa_regular_400_ttf
 
-FontHandler::FontHandler()
+FontAwesomeHandler::FontAwesomeHandler()
 {
     wxStandardPaths& stdPaths = wxStandardPaths::Get();
     wxFileName fontFileName(stdPaths.GetTempDir(), TTF_FILE_NAME);
     fontFilePath = fontFileName.GetFullPath();
 }
 
-FontHandler::~FontHandler()
+FontAwesomeHandler::~FontAwesomeHandler()
 {
 }
 
-bool FontHandler::DumpFontToTempFile()
+bool FontAwesomeHandler::DumpFontToTempFile()
 {
     wxFile file;
     if (!file.Open(fontFilePath, wxFile::write)) {
@@ -29,7 +29,7 @@ bool FontHandler::DumpFontToTempFile()
     return (file.Write(TTF_ARRAY, sizeof(TTF_ARRAY)) == sizeof(TTF_ARRAY) && file.Close());
 }
 
-wxFont FontHandler::LoadFont()
+wxFont FontAwesomeHandler::LoadFont()
 {
     if (!DumpFontToTempFile()) {
         return wxNullFont;

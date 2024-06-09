@@ -1,4 +1,3 @@
-#include <wx/graphics.h>
 #include <wx/sizer.h>
 #include <wx/wx.h>
 

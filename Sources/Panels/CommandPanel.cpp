@@ -1,9 +1,7 @@
 #include "../Controls/ActionButton.cpp"
-
+#include "../FontAwesome/FontAwesomeHandler.h"
 #include <wx/sizer.h>
 #include <wx/wx.h>
-
-#include "FontHandler.h"
 
 class ButtonPanel : public wxPanel {
 
@@ -11,9 +9,9 @@ public:
     ButtonPanel(wxWindow* parent)
         : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize)
     {
-        FontHandler fontHandler;
+        FontAwesomeHandler fontAwesomeHandler;
         // Set the embeded font for icon
-        wxFont iconFont = fontHandler.LoadFont();
+        wxFont iconFont = fontAwesomeHandler.LoadFont();
 
         // Set the default system font for text
         wxFont textFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
