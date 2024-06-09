@@ -1,5 +1,3 @@
-#pragma once
-
 #include "../Controls/ActionButton.cpp"
 
 #include <wx/sizer.h>

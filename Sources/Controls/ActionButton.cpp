@@ -1,5 +1,3 @@
-#pragma once
-
 #include "StaticText.cpp"
 #include <wx/graphics.h>
 #include <wx/sizer.h>

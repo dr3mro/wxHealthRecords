@@ -1,4 +1,3 @@
-#pragma once
 #include <wx/wx.h>
 
 class StaticText : public wxStaticText
