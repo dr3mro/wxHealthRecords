@@ -10,7 +10,7 @@ FontHandler::FontHandler ()
   wxStandardPaths &stdPaths = wxStandardPaths::Get ();
 #if defined(_WIN32)
   wxFileName fontFileName (stdPaths.GetTempDir (), "fa_solid_900.ttf");
-#elif defined(__Linux__)
+#else
   wxFileName fontFileName (stdPaths.GetUserConfigDir (), "fa_solid_900.ttf");
 #endif
 
