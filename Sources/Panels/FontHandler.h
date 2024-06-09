@@ -15,7 +15,7 @@ public:
   wxFont LoadFont ();
 
 private:
-  wxString tempFilePath;
+  wxString fontFilePath;
 };
 
 #endif // FONTHANDLER_H
