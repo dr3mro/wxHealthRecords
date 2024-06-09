@@ -22,10 +22,10 @@ FontHandler::FontHandler ()
 FontHandler::~FontHandler ()
 {
   // Optionally delete the temporary font file
-  if (wxFileExists (fontFilePath))
-    {
-      wxRemoveFile (fontFilePath);
-    }
+  // if (wxFileExists (fontFilePath))
+  //   {
+  //     wxRemoveFile (fontFilePath);
+  //   }
 }
 
 bool
