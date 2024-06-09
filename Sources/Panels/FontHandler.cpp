@@ -12,7 +12,7 @@ FontHandler::FontHandler ()
 #define FONT_FACE_NAME "Font Awesome 6 Pro Regular"
   wxFileName fontFileName (stdPaths.GetTempDir (), "fa_regular_400.ttf");
 #else
-#define FONT_FACE_NAME "Font Awesome 6 Pro"
+#define FONT_FACE_NAME "Font Awesome 6 Pro 14"
   wxFileName fontFileName (stdPaths.GetUserConfigDir (), "fa_regular_400.ttf");
 #endif
 
