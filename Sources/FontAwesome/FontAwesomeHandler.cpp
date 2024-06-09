@@ -22,10 +22,6 @@ FontAwesomeHandler::FontAwesomeHandler()
     fontFilePath = fontFileName.GetFullPath();
 }
 
-FontAwesomeHandler::~FontAwesomeHandler()
-{
-}
-
 bool FontAwesomeHandler::DumpFontToTempFile()
 {
     wxFile file;

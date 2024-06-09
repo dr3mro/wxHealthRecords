@@ -5,7 +5,7 @@
 class FontAwesomeHandler {
 public:
     FontAwesomeHandler();
-    ~FontAwesomeHandler();
+    ~FontAwesomeHandler() = default;
 
     wxFont LoadFontAwesome();
 
