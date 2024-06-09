@@ -1,21 +1,17 @@
 #ifndef FONTHANDLER_H
 #define FONTHANDLER_H
-
-#include <wx/filefn.h> // For wxFileName
 #include <wx/font.h>
 #include <wx/wx.h>
 
-class FontHandler
-{
+class FontHandler {
 public:
-  FontHandler ();
-  ~FontHandler ();
+    FontHandler();
+    ~FontHandler();
 
-  bool DumpFontToTempFile ();
-  wxFont LoadFont ();
+    bool DumpFontToTempFile();
+    wxFont LoadFont();
 
 private:
-  wxString fontFilePath;
+    wxString fontFilePath;
 };
-
 #endif // FONTHANDLER_H

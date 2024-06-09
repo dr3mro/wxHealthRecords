@@ -9,45 +9,34 @@
 #define TTF_FILE_NAME "fa_regular_400.ttf"
 #define TTF_ARRAY arr_fa_regular_400_ttf
 
-FontHandler::FontHandler ()
+FontHandler::FontHandler()
 {
-  wxStandardPaths &stdPaths = wxStandardPaths::Get ();
-  wxFileName fontFileName (stdPaths.GetTempDir (), TTF_FILE_NAME);
-  fontFilePath = fontFileName.GetFullPath ();
+    wxStandardPaths& stdPaths = wxStandardPaths::Get();
+    wxFileName fontFileName(stdPaths.GetTempDir(), TTF_FILE_NAME);
+    fontFilePath = fontFileName.GetFullPath();
 }
 
-FontHandler::~FontHandler () {}
-
-bool
-FontHandler::DumpFontToTempFile ()
+FontHandler::~FontHandler()
 {
-  wxFile file;
-  if (!file.Open (fontFilePath, wxFile::write))
-    {
-      return false;
-    }
-  file.Write (TTF_ARRAY, sizeof (TTF_ARRAY));
-  file.Close ();
-  return true;
 }
 
-wxFont
-FontHandler::LoadFont ()
+bool FontHandler::DumpFontToTempFile()
 {
-  if (!DumpFontToTempFile ())
-    {
-      return wxNullFont;
+    wxFile file;
+    if (!file.Open(fontFilePath, wxFile::write)) {
+        return false;
     }
-  wxFont font;
-  if (wxFileExists (fontFilePath) && wxFont::AddPrivateFont (fontFilePath))
-    {
-      font = wxFont (14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-                     wxFONTWEIGHT_NORMAL, false, wxT (FONT_FACE_NAME));
+    return (file.Write(TTF_ARRAY, sizeof(TTF_ARRAY)) == sizeof(TTF_ARRAY) && file.Close());
+}
 
-      if (font.IsOk ())
-        {
-          return font;
-        }
+wxFont FontHandler::LoadFont()
+{
+    if (!DumpFontToTempFile()) {
+        return wxNullFont;
     }
-  return wxNullFont;
+    wxFont font;
+    if (wxFileExists(fontFilePath) && wxFont::AddPrivateFont(fontFilePath)) {
+        font = wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT(FONT_FACE_NAME));
+    }
+    return font.IsOk() ? font : wxNullFont;
 }
