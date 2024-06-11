@@ -10,11 +10,12 @@ cpmaddpackage(
   OPTIONS
   "wxUSE_STATIC_RUNTIME ON"
   "wxBUILD_SHARED OFF"
-  "wxBUILD_STATIC=ON"
+  "wxBUILD_STATIC ON"
   "wxUSE_STL ON")
 
 add_executable(${Target} WIN32 ${SOURCES} ${Bundle}Application.rc)
-target_include_directories(${Target} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/Sources/")
+target_include_directories(${Target}
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/Sources/")
 target_link_libraries(${Target} PRIVATE wxcore wxnet wxbase wxaui)
 # ##############################################################################
 # Add a custom target to strip symbols from the executable
