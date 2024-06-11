@@ -1,0 +1,57 @@
+{
+    "cmake.options.statusBarVisibility": "visible",
+    "cmake.showOptionsMovedNotification": false,
+    "cmake.configureOnOpen": true,
+    "cmake.configureArgs": [],
+    "cmake.sourceDirectory": "${workspaceFolder}",
+    "[cmake]": {
+        "editor.defaultFormatter": "cheshirekow.cmake-format"
+    },
+    "cmake.preferredGenerators": [
+        "Ninja",
+    ],
+    "C_Cpp.intelliSenseEngine": "disabled",
+    //"editor.fontFamily": "JetBrainsMono NF Medium",
+    "editor.fontLigatures": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.defaultFormatter": "xaver.clang-format",
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "clangd.arguments": [
+        "-background-index",
+        "--completion-style=detailed",
+        "--header-insertion=never",
+        "--clang-tidy",
+        "--function-arg-placeholders",
+        "--compile-commands-dir=${workspaceFolder}/build/${buildType}/"
+    ],
+    "editor.inlineSuggest.showToolbar": "always",
+    "editor.quickSuggestions": {
+        "comments": "inline",
+        "strings": "inline"
+    },
+    "editor.suggest.matchOnWordStartOnly": false,
+    "editor.suggest.preview": true,
+    "editor.suggest.shareSuggestSelections": true,
+    "files.trimTrailingWhitespace": true,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "workbench.colorTheme": "One Monokai",
+    "workbench.productIconTheme": "feather-vscode",
+    "cmake.generator": "Ninja",
+    "clang-format.fallbackStyle": "WebKit",
+    "cmake.showNotAllDocumentsSavedQuestion": false,
+    "cmake.buildDirectory": "${workspaceFolder}/build/${buildType}/",
+    "settingsSync.ignoredSettings": [
+        "-C_Cpp.default.compileCommands"
+    ],
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/${buildType}/compile_commands.json",
+    "cmake.mergedCompileCommands": "${workspaceFolder}/build/compile_commands.json"
+}
