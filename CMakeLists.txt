@@ -8,9 +8,9 @@ include(Vars)
 
 include(Flags)
 
-include(CPM)
-
 include(AutoCCache)
+
+include(CPM)
 
 if(UNIX)
   include(Unix)

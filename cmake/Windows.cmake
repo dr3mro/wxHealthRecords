@@ -14,6 +14,7 @@ cpmaddpackage(
   "wxUSE_STL ON")
 
 add_executable(${Target} WIN32 ${SOURCES} ${Bundle}Application.rc)
+
 target_include_directories(${Target}
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/Sources/")
 target_link_libraries(${Target} PRIVATE wxcore wxnet wxbase wxaui)
