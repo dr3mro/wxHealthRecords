@@ -8,9 +8,12 @@
 	<string>English</string>
     <key>CFBundlePackageType</key>
 	<string>APPL</string>
+    <key>CFBundleIconFile</key>
+    <string>icon.icns</string>
     <key>NSPrincipalClass</key>
     <string>NSApplication</string>
     <key>NSHighResolutionCapable</key>
+    <true/>
     <true/>
 </dict>
 </plist>
