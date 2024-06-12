@@ -1,5 +1,6 @@
 #pragma once
 #include "Controls/StaticText.hpp"
+#include "SoundEffects/SoundEffects.hpp"
 
 #include <wx/wxprec.h>
 
@@ -29,4 +30,6 @@ private:
     StaticText* labelText;
     bool m_hovered = false;
     bool m_pressed = false;
+
+    SoundEffects soundEffect;
 };

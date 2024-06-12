@@ -1,11 +1,12 @@
+#include "Controls/ActionButton.hpp"
+#include "SoundEffects/SoundEffects.hpp"
+
 #include <wx/wxprec.h>
 
 #ifndef WX_PRECOMP
 #include <wx/sizer.h>
 #include <wx/wx.h>
 #endif
-
-#include "Controls/ActionButton.hpp"
 
 ActionButton::ActionButton(wxWindow* parent, wxWindowID id,
     const wxString& icon, const wxString& text,
@@ -62,6 +63,7 @@ void ActionButton::SetTextFont(const wxFont& font)
 void ActionButton::OnMouseDown(wxMouseEvent& event)
 {
     m_pressed = true;
+    soundEffect.Play(SoundEffects::NavigationStart);
     Refresh();
     event.Skip();
 }
