@@ -10,14 +10,20 @@ CPMAddPackage(
 )
 
 
+
 # Set the icon file path
 set(MACOSX_BUNDLE_ICON_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Bundle/icon.icns)
+# Set the wns wave file path
+set(MACOSX_BUNDLE_WNS_WAV_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Bundle/wns.wav)
 
 # Specify the icon file as a resource
 set_source_files_properties(${MACOSX_BUNDLE_ICON_FILE} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 
+# Specify the wav file as a resource
+set_source_files_properties(${MACOSX_BUNDLE_WNS_WAV_FILE} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+
 # Add the source files for your project
-add_executable(${Target} MACOSX_BUNDLE ${MACOSX_BUNDLE_ICON_FILE} ${SOURCES})
+add_executable(${Target} MACOSX_BUNDLE ${MACOSX_BUNDLE_ICON_FILE} ${MACOSX_BUNDLE_WNS_WAV_FILE} ${SOURCES})
 
 # Link wxWidgets to your project
 target_link_libraries(${Target} PRIVATE wx::net wx::core wx::base)

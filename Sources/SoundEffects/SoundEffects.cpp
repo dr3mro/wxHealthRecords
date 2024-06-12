@@ -6,18 +6,43 @@
  */
 
 #include "SoundEffects.hpp"
-#include "Resources/windowsNavigationStart.hpp"
+
 // For compilers that support precompilation, includes "wx/wx.h".
 #include <wx/wxprec.h>
 
 #ifndef WX_PRECOMP
 #include <wx/sound.h>
 #include <wx/wx.h>
+#endif
 
+#ifdef __APPLE__
+#include <wx/filename.h>
+#include "Common/CommonApple.hpp"
+#else
+#include "Resources/windowsNavigationStart.hpp"
 #endif
 
 bool SoundEffects::Play(SoundEffect _sound)
 {
+    #ifdef __APPLE__
+    wxString resourcePath = getResourcesDirectoryPath();
+
+    if (resourcePath.empty()) {
+        // Error handling
+        wxMessageBox("Failed to get Resources directory path!");
+        return false;
+    }
+
+    // Construct the full path to the WAV file
+    wxString wavFileName = wxT("wns.wav");
+    wxString wavFilePath = resourcePath;
+    wavFilePath.Append(wxFileName::GetPathSeparator());
+    wavFilePath.Append(wavFileName);
+    // Load the WAV file
+        wxSound sound(wavFilePath);
+    #else
+
+
     SoundEffects::SoundData waveData = GetWavData(_sound);
 
     if (waveData.soundData == nullptr)
@@ -25,6 +50,7 @@ bool SoundEffects::Play(SoundEffect _sound)
     wxSound sound;
 
     sound.Create(waveData.soundDataSize, waveData.soundData);
+    #endif
 
     // Add error handling for sound creation
     if (!sound.IsOk()) {
@@ -36,6 +62,7 @@ bool SoundEffects::Play(SoundEffect _sound)
     sound.Play(wxSOUND_ASYNC);
     return true;
 }
+#ifndef __APPLE__
 
 SoundEffects::SoundData SoundEffects::GetWavData(const SoundEffect _sound)
 {
@@ -47,3 +74,4 @@ SoundEffects::SoundData SoundEffects::GetWavData(const SoundEffect _sound)
         return { nullptr, 0 };
     }
 }
+#endif

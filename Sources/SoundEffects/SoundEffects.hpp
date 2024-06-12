@@ -10,13 +10,18 @@ public:
         NavigationStart
     };
 
+    bool Play(SoundEffect _sound);
+
+
+#ifndef __APPLE__
     typedef struct {
         void* soundData;
         size_t soundDataSize;
     } SoundData;
 
-    bool Play(SoundEffect _sound);
+
 
 private:
     SoundData GetWavData(SoundEffect _sound);
+#endif
 };
