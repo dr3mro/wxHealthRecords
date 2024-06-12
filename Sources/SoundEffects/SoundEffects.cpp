@@ -45,6 +45,6 @@ SoundEffects::SoundData SoundEffects::GetWavData(const SoundEffect _sound)
         return { (void*)arr_wns_wav, sizeof(arr_wns_wav) };
     default:
         wxLogError("Unexpected SoundEffect value.");
-        return { NULL, 0 };
+        return { nullptr, 0 };
     }
 }
