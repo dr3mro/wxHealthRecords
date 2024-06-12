@@ -42,11 +42,12 @@ CommandPanel::CommandPanel(wxWindow* parent)
     // Create a vertical box sizer
     wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
+    const short buttonSize = 64;
     // Loop to create and add CustomButtons
     for (int i = 0; i < numButtons; ++i) {
         NavigationButton* button
             = new NavigationButton(this, wxID_ANY, icons[i], labels[i],
-                wxDefaultPosition, FromDIP(wxSize(64, 64)));
+                wxDefaultPosition, FromDIP(wxSize(buttonSize, buttonSize)));
         button->SetIconFont(iconFont);
         button->SetTextFont(textFont);
         sizer->Add(button, 0, wxALIGN_CENTER | wxTOP | wxLEFT | wxRIGHT, 5);

@@ -14,7 +14,12 @@ NavigationButton::NavigationButton(wxWindow* parent, wxWindowID id,
     const wxSize& size)
     : wxPanel(parent, id, pos, size)
 {
-
+    /**
+ *  Create a vertical box sizer to stack an icon and text within a button.
+ *  Set the fonts for the icon and text.
+ *  Center the icon and text horizontally within the button.
+ *  Bind paint, mouse events, and window enter/leave events to corresponding methods.
+ */
     // Create a vertical box sizer to stack the icon and text
     wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
