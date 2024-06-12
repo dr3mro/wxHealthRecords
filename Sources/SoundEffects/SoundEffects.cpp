@@ -25,6 +25,8 @@
 bool SoundEffects::Play(SoundEffect _sound)
 {
     #ifdef __APPLE__
+    (void)_sound;
+
     wxString resourcePath = getResourcesDirectoryPath();
 
     if (resourcePath.empty()) {

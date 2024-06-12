@@ -1,3 +1,5 @@
+#pragma once
+
 #include <wx/wxprec.h>
 
 #ifndef WX_PRECOMP
@@ -7,7 +9,7 @@
 
 #include <CoreFoundation/CoreFoundation.h>
 
-wxString getResourcesDirectoryPath() {
+inline wxString getResourcesDirectoryPath() {
     wxString resourcesPath;
     CFBundleRef mainBundle = CFBundleGetMainBundle();
     if (mainBundle) {

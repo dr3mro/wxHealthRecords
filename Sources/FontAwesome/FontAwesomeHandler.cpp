@@ -12,21 +12,32 @@
 #include "Resources/FontAwesome.hpp"
 
 #define FONT_FACE_NAME "Font Awesome 6 Pro Regular"
-#define TTF_FILE_NAME "fa_regular_400.ttf"
+#define TTF_FILE_NAME "fa-regular-400.ttf"
 #define TTF_ARRAY arr_fa_regular_400_ttf
+
+#ifdef __APPLE__
+#include "Common/CommonApple.hpp"
+#endif
 
 FontAwesomeHandler::FontAwesomeHandler()
 {
+#ifdef __APPLE__
+    wxFileName fontFileName(getResourcesDirectoryPath().Append("/Fonts/"), TTF_FILE_NAME);
+    fontFilePath = fontFileName.GetFullPath();
+#else
     wxStandardPaths& stdPaths = wxStandardPaths::Get();
     wxFileName fontFileName(stdPaths.GetTempDir(), TTF_FILE_NAME);
     fontFilePath = fontFileName.GetFullPath();
+#endif
 }
 
 wxFont FontAwesomeHandler::LoadFontAwesome()
 {
+#ifndef __APPLE__
     if (!DumpFontToTempFile()) {
         return wxNullFont;
     }
+#endif
     wxFont font;
     if (wxFileExists(fontFilePath) && wxFont::AddPrivateFont(fontFilePath)) {
         font = wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT(FONT_FACE_NAME));
