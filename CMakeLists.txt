@@ -12,9 +12,7 @@ include(AutoCCache)
 
 include(CPM)
 
-if(UNIX)
-  include(Unix)
-elseif(APPLE)
+if(APPLE)
   include(MacOs)
 elseif(WIN32)
   include(Windows)
