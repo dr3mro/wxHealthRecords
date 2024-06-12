@@ -10,6 +10,8 @@
 	<string>APPL</string>
     <key>CFBundleIconFile</key>
     <string>icon.icns</string>
+    <key>ATSApplicationFontsPath</key>
+    <string>Fonts</string>
     <key>NSPrincipalClass</key>
     <string>NSApplication</string>
     <key>NSHighResolutionCapable</key>
