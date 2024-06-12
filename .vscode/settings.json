@@ -53,5 +53,6 @@
         "-C_Cpp.default.compileCommands"
     ],
     "C_Cpp.default.compileCommands": "${workspaceFolder}/build/${buildType}/compile_commands.json",
-    "cmake.mergedCompileCommands": "${workspaceFolder}/build/compile_commands.json"
+    "cmake.mergedCompileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "codium.codeCompletion.enable": true
 }
