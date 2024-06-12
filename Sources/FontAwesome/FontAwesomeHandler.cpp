@@ -40,5 +40,5 @@ bool FontAwesomeHandler::DumpFontToTempFile()
     if (!file.Open(fontFilePath, wxFile::write)) {
         return false;
     }
-    return (file.Write(TTF_ARRAY, sizeof(TTF_ARRAY)) == sizeof(TTF_ARRAY) && file.Close());
+    return (file.Write(TTF_ARRAY, sizeof(arr_fa_regular_400_ttf)) == sizeof(arr_fa_regular_400_ttf) && file.Close());
 }
