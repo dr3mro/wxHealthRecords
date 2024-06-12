@@ -9,7 +9,7 @@
 #endif
 
 #include "FontAwesomeHandler.hpp"
-#include "Resources/Fontawesome.hpp"
+#include "Resources/FontAwesome.hpp"
 
 #define FONT_FACE_NAME "Font Awesome 6 Pro Regular"
 #define TTF_FILE_NAME "fa_regular_400.ttf"
@@ -40,5 +40,5 @@ bool FontAwesomeHandler::DumpFontToTempFile()
     if (!file.Open(fontFilePath, wxFile::write)) {
         return false;
     }
-    return (file.Write(TTF_ARRAY, sizeof(TTF_ARRAY)) == sizeof(TTF_ARRAY) && file.Close());
+    return (file.Write(TTF_ARRAY, sizeof(arr_fa_regular_400_ttf)) == sizeof(arr_fa_regular_400_ttf) && file.Close());
 }
