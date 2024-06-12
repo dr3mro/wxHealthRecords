@@ -5,7 +5,7 @@
 #include <wx/wx.h>
 #endif
 
-#include "Controls/ActionButton.hpp"
+#include "Controls/NavigationButton.hpp"
 #include "FontAwesome/FontAwesomeHandler.hpp"
 #include "Panels/CommandPanel.hpp"
 
@@ -44,8 +44,8 @@ CommandPanel::CommandPanel(wxWindow* parent)
 
     // Loop to create and add CustomButtons
     for (int i = 0; i < numButtons; ++i) {
-        ActionButton* button
-            = new ActionButton(this, wxID_ANY, icons[i], labels[i],
+        NavigationButton* button
+            = new NavigationButton(this, wxID_ANY, icons[i], labels[i],
                 wxDefaultPosition, FromDIP(wxSize(64, 64)));
         button->SetIconFont(iconFont);
         button->SetTextFont(textFont);

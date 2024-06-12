@@ -1,4 +1,4 @@
-#include "Controls/ActionButton.hpp"
+#include "Controls/NavigationButton.hpp"
 #include "SoundEffects/SoundEffects.hpp"
 
 #include <wx/wxprec.h>
@@ -8,7 +8,7 @@
 #include <wx/wx.h>
 #endif
 
-ActionButton::ActionButton(wxWindow* parent, wxWindowID id,
+NavigationButton::NavigationButton(wxWindow* parent, wxWindowID id,
     const wxString& icon, const wxString& text,
     const wxPoint& pos,
     const wxSize& size)
@@ -39,28 +39,28 @@ ActionButton::ActionButton(wxWindow* parent, wxWindowID id,
 
     SetSizer(sizer);
     Layout();
-    this->Bind(wxEVT_PAINT, &ActionButton::OnPaint, this);
-    this->Bind(wxEVT_LEFT_DOWN, &ActionButton::OnMouseDown, this);
-    this->Bind(wxEVT_LEFT_UP, &ActionButton::OnMouseUp, this);
-    this->Bind(wxEVT_ENTER_WINDOW, &ActionButton::OnMouseEnter, this);
-    this->Bind(wxEVT_LEAVE_WINDOW, &ActionButton::OnMouseLeave, this);
+    this->Bind(wxEVT_PAINT, &NavigationButton::OnPaint, this);
+    this->Bind(wxEVT_LEFT_DOWN, &NavigationButton::OnMouseDown, this);
+    this->Bind(wxEVT_LEFT_UP, &NavigationButton::OnMouseUp, this);
+    this->Bind(wxEVT_ENTER_WINDOW, &NavigationButton::OnMouseEnter, this);
+    this->Bind(wxEVT_LEAVE_WINDOW, &NavigationButton::OnMouseLeave, this);
 }
 
 // Public method to set the font for the icon
-void ActionButton::SetIconFont(const wxFont& font)
+void NavigationButton::SetIconFont(const wxFont& font)
 {
     iconText->SetFont(font);
     Layout();
 }
 
 // Public method to set the font for the text string
-void ActionButton::SetTextFont(const wxFont& font)
+void NavigationButton::SetTextFont(const wxFont& font)
 {
     labelText->SetFont(font);
     Layout();
 }
 
-void ActionButton::OnMouseDown(wxMouseEvent& event)
+void NavigationButton::OnMouseDown(wxMouseEvent& event)
 {
     m_pressed = true;
     soundEffect.Play(SoundEffects::NavigationStart);
@@ -68,7 +68,7 @@ void ActionButton::OnMouseDown(wxMouseEvent& event)
     event.Skip();
 }
 
-void ActionButton::OnMouseUp(wxMouseEvent& event)
+void NavigationButton::OnMouseUp(wxMouseEvent& event)
 {
     if (m_pressed) {
         wxCommandEvent evt(wxEVT_BUTTON, GetId());
@@ -81,14 +81,14 @@ void ActionButton::OnMouseUp(wxMouseEvent& event)
     event.Skip();
 }
 
-void ActionButton::OnMouseEnter(wxMouseEvent& event)
+void NavigationButton::OnMouseEnter(wxMouseEvent& event)
 {
     m_hovered = true;
     Refresh();
     event.Skip();
 }
 
-void ActionButton::OnMouseLeave(wxMouseEvent& event)
+void NavigationButton::OnMouseLeave(wxMouseEvent& event)
 {
     // Get the global mouse position
     wxPoint globalMousePos = wxGetMousePosition();
@@ -108,7 +108,7 @@ void ActionButton::OnMouseLeave(wxMouseEvent& event)
     event.Skip();
 }
 
-void ActionButton::OnPaint(wxPaintEvent& event)
+void NavigationButton::OnPaint(wxPaintEvent& event)
 {
     wxPaintDC dc(this);
 

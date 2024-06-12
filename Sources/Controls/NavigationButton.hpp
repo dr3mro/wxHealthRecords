@@ -8,13 +8,13 @@
 #include <wx/wx.h>
 #endif
 
-class ActionButton : public wxPanel {
+class NavigationButton : public wxPanel {
 public:
-    ActionButton(wxWindow* parent, wxWindowID id = wxID_ANY,
+    NavigationButton(wxWindow* parent, wxWindowID id = wxID_ANY,
         const wxString& icon = "", const wxString& text = "",
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize);
-    ~ActionButton() = default;
+    ~NavigationButton() = default;
 
     void SetIconFont(const wxFont& font);
     void SetTextFont(const wxFont& font);
