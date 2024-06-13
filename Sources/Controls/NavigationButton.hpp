@@ -1,5 +1,5 @@
 #pragma once
-#include "Controls/StaticText.hpp"
+#include "Controls/Private/StaticText.hpp"
 #include "SoundEffects/SoundEffects.hpp"
 
 #include <wx/wxprec.h>
