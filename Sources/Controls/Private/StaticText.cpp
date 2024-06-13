@@ -19,6 +19,6 @@ StaticText::StaticText(wxWindow* parent, wxWindowID id, const wxString& label,
 
 void StaticText::PropagateMouseEventsToParent(wxMouseEvent& event)
 {
-    event.ResumePropagation(wxEVENT_PROPAGATE_MAX);
     event.Skip();
+    event.ResumePropagation(wxEVENT_PROPAGATE_MAX);
 }
