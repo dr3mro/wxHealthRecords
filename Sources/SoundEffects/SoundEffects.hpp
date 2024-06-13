@@ -1,27 +1,17 @@
 #pragma once
 
-#include <cstddef>
+#include "SoundEffectsCommon.hpp"
+
+#ifdef __APPLE__
+#include "SoundEffectsImplApple.hpp"
+#else
+#include "SoundEffectsImpl.hpp"
+#endif
+
 class SoundEffects {
 public:
     SoundEffects() = default;
     ~SoundEffects() = default;
 
-    enum SoundEffect {
-        NavigationStart
-    };
-
     bool Play(SoundEffect _sound);
-
-
-#ifndef __APPLE__
-    typedef struct {
-        void* soundData;
-        size_t soundDataSize;
-    } SoundData;
-
-
-
-private:
-    SoundData GetWavData(SoundEffect _sound);
-#endif
 };

@@ -68,7 +68,7 @@ void NavigationButton::SetTextFont(const wxFont& font)
 void NavigationButton::OnMouseDown(wxMouseEvent& event)
 {
     m_pressed = true;
-    soundEffect.Play(SoundEffects::NavigationStart);
+    soundEffect.Play(SoundEffect::NavigationStart);
     Refresh();
     event.Skip();
 }
