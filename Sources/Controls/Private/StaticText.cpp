@@ -12,7 +12,8 @@ StaticText::StaticText(wxWindow* parent, wxWindowID id, const wxString& label,
     const wxString& name)
     : wxStaticText(parent, id, label, pos, size, style, name)
 {
-    Bind(wxEVT_MOTION, &StaticText::PropagateMouseEventsToParent, this);
+    Bind(wxEVT_LEAVE_WINDOW, &StaticText::PropagateMouseEventsToParent, this);
+    Bind(wxEVT_ENTER_WINDOW, &StaticText::PropagateMouseEventsToParent, this);
     Bind(wxEVT_LEFT_DOWN, &StaticText::PropagateMouseEventsToParent, this);
     Bind(wxEVT_LEFT_UP, &StaticText::PropagateMouseEventsToParent, this);
 }
