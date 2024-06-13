@@ -88,6 +88,9 @@ void NavigationButton::OnMouseUp(wxMouseEvent& event)
 
 void NavigationButton::OnMouseEnter(wxMouseEvent& event)
 {
+    if (event.GetEventObject() != this) {
+        return;
+    }
     m_hovered = true;
     Refresh();
     event.Skip();
