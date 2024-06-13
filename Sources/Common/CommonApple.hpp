@@ -1,3 +1,4 @@
+#ifdef __APPLE__
 #pragma once
 
 #include <wx/wxprec.h>
@@ -25,3 +26,4 @@ inline wxString getResourcesDirectoryPath()
     }
     return resourcesPath;
 }
+#endif

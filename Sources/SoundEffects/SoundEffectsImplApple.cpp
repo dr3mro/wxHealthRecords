@@ -11,12 +11,15 @@
 #include <wx/wxprec.h>
 
 #ifndef WX_PRECOMP
+#include <wx/filename.h>
 #include <wx/sound.h>
 #include <wx/wx.h>
+
 #endif
 
+#ifdef __APPLE__
 #include "Common/CommonApple.hpp"
-#include <wx/filename.h>
+#endif
 
 bool SoundEffectsImplApple::Play(SoundEffect _sound)
 {
