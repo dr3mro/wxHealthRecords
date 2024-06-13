@@ -12,76 +12,13 @@ StaticText::StaticText(wxWindow* parent, wxWindowID id, const wxString& label,
     const wxString& name)
     : wxStaticText(parent, id, label, pos, size, style, name)
 {
-    // Ensure that all mouse events are propagated to parent and not blocked here.
-    BindEvents();
+    Bind(wxEVT_MOTION, &StaticText::PropagateMouseEventsToParent, this);
+    Bind(wxEVT_LEFT_DOWN, &StaticText::PropagateMouseEventsToParent, this);
+    Bind(wxEVT_LEFT_UP, &StaticText::PropagateMouseEventsToParent, this);
 }
 
-void StaticText::DoParentMouseEvent(wxMouseEvent& event)
+void StaticText::PropagateMouseEventsToParent(wxMouseEvent& event)
 {
-    // Propagate the mouse event to the parent window
-    wxWindow* parent = GetParent();
-    if (parent) {
-        parent->ProcessWindowEvent(event);
-    }
-}
-
-void StaticText::OnMouseEnter(wxMouseEvent& event)
-{
+    event.ResumePropagation(wxEVENT_PROPAGATE_MAX);
     event.Skip();
-    DoParentMouseEvent(event);
-}
-
-void StaticText::OnMouseLeave(wxMouseEvent& event)
-{
-    event.Skip();
-    DoParentMouseEvent(event);
-}
-
-void StaticText::OnLeftDown(wxMouseEvent& event)
-{
-    event.Skip();
-    DoParentMouseEvent(event);
-}
-
-void StaticText::OnLeftUp(wxMouseEvent& event)
-{
-    event.Skip();
-    DoParentMouseEvent(event);
-}
-
-void StaticText::OnRightDown(wxMouseEvent& event)
-{
-    event.Skip();
-    DoParentMouseEvent(event);
-}
-
-void StaticText::OnRightUp(wxMouseEvent& event)
-{
-    event.Skip();
-    DoParentMouseEvent(event);
-}
-
-void StaticText::OnMiddleDown(wxMouseEvent& event)
-{
-    event.Skip();
-    DoParentMouseEvent(event);
-}
-
-void StaticText::OnMiddleUp(wxMouseEvent& event)
-{
-    event.Skip();
-    DoParentMouseEvent(event);
-}
-inline void
-StaticText::BindEvents()
-{
-    // Bind mouse enter and leave events to the button
-    Bind(wxEVT_ENTER_WINDOW, &StaticText::OnMouseEnter, this);
-    Bind(wxEVT_LEAVE_WINDOW, &StaticText::OnMouseLeave, this);
-    Bind(wxEVT_LEFT_DOWN, &StaticText::OnLeftDown, this);
-    Bind(wxEVT_LEFT_UP, &StaticText::OnLeftUp, this);
-    Bind(wxEVT_RIGHT_DOWN, &StaticText::OnRightDown, this);
-    Bind(wxEVT_RIGHT_UP, &StaticText::OnRightUp, this);
-    Bind(wxEVT_MIDDLE_DOWN, &StaticText::OnMiddleDown, this);
-    Bind(wxEVT_MIDDLE_UP, &StaticText::OnMiddleUp, this);
 }

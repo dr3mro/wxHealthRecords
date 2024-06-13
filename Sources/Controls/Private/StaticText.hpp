@@ -12,14 +12,5 @@ public:
 
 private:
     void
-    DoParentMouseEvent(wxMouseEvent& event);
-    void OnMouseEnter(wxMouseEvent& event);
-    void OnMouseLeave(wxMouseEvent& event);
-    void OnLeftDown(wxMouseEvent& event);
-    void OnLeftUp(wxMouseEvent& event);
-    void OnRightDown(wxMouseEvent& event);
-    void OnRightUp(wxMouseEvent& event);
-    void OnMiddleDown(wxMouseEvent& event);
-    void OnMiddleUp(wxMouseEvent& event);
-    inline void BindEvents();
+    PropagateMouseEventsToParent(wxMouseEvent& event);
 };
