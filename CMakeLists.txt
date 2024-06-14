@@ -14,6 +14,8 @@ include(CPM)
 
 if(APPLE)
   include(MacOs)
+elseif(UNIX)
+  include(Unix)
 elseif(WIN32)
   include(Windows)
 endif()

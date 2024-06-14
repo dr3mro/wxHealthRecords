@@ -15,16 +15,8 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -DNDEBUG -O2 ")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # enable detection of memory leaks in Linux
+
 if(UNIX)
-  set(CMAKE_CXX_FLAGS_DEBUG
-      "${CMAKE_CXX_FLAGS_DEBUG}
-    -fno-omit-frame-pointer
-    -fsanitize=address
-    -g")
-  set(CMAKE_LINKER_FLAGS_DEBUG
-      "${CMAKE_LINKER_FLAGS_DEBUG}
-    -fno-omit-frame-pointer
-    -fsanitize=address
-    -g
-    ")
+ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=address   -g")
+ set(CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address -g")
 endif()

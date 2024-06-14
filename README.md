@@ -46,5 +46,5 @@ cmake --build build-rel -j
 
 # Check MemLeaks
 ```bash
-LSAN_OPTIONS=suppressions=suppressions.txt build/Health_Records
+LSAN_OPTIONS=suppressions=suppressions.txt build/Debug/Health_Records
 ```

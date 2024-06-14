@@ -19,8 +19,10 @@ bool SoundEffectsImpl::Play(SoundEffect _sound)
 {
     SoundData waveData = GetWavData(_sound);
 
-    if (waveData.soundData == nullptr)
+    if (waveData.soundData == nullptr){
         return false;
+    }
+
     wxSound sound;
 
     sound.Create(waveData.soundDataSize, waveData.soundData);
